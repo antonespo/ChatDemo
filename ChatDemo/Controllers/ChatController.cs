@@ -19,13 +19,16 @@ namespace ChatDemo.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Message> Get()
+        public Message Get()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Message
+            return new Message
             {
-            })
-            .ToArray();
+                Id = 1, 
+                Name = "Antonio", 
+                Text = "Ciao ciao da Antonio ", 
+                CreatedAt = DateTime.Now
+            };
         }
     }
 }
