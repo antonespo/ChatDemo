@@ -27,6 +27,8 @@ namespace ChatDemo
         {
             services.AddControllers();
 
+            services.AddTransient<DataContext>(); 
+
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));

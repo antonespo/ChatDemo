@@ -5,30 +5,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace ChatDemo.Controllers
-{
+namespace ChatDemo.Controllers {
     [ApiController]
-    [Route("[controller]")]
-    public class ChatController : ControllerBase
-    {
+    [Route ("[controller]")]
+    public class ChatController : ControllerBase {
         private readonly ILogger<ChatController> _logger;
+        private readonly DataContext context;
 
-        public ChatController(ILogger<ChatController> logger)
-        {
+        public ChatController (ILogger<ChatController> logger, DataContext context) {
+            this.context = context;
             _logger = logger;
         }
 
-        [HttpGet]
-        public Message Get()
-        {
-            var rng = new Random();
-            return new Message
-            {
-                Id = 1, 
-                Name = "Antonio", 
-                Text = "Ciao ciao da Antonio ", 
-                CreatedAt = DateTime.Now
-            };
+        [HttpGet ("all")]
+        public List<Message> Get () {
+            return context.Messages.ToList(); 
+        }
+
+        [HttpPost ("new")]
+        public bool Post (Message message) {
+            message.CreatedAt = DateTime.Now; 
+            context.Messages.Add(message); 
+            var success = context.SaveChanges() > 0; 
+
+            return success;
         }
     }
 }
