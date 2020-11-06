@@ -1,34 +1,34 @@
 <body>
-    <h1>A simple chat demo:</h1>
+    <h1>Una semplice chat demo:</h1>
     <form>
-        <label>Name and surname: </label>
-        <input type="text" id="inputName" [(ngModel)]="identity" name="identity"><br><br>
-        <label>Write the message to send:</label><br><br>
-        <textarea id="message" rows="6" cols="60" [(ngModel)]="text" name="text"></textarea><br><br>
-        <input type="button" id="inputName" (click)="sendMessage()" value="Send"><br><br>
-        <p>Click the "Send" button to send the message</p>
+        <label>Nome e cognome: </label>
+        <input type="text" id="inputName" [(ngModel)]="message.name" name="identity"><br><br>
+        <label>Scrivi il messaggio da inviare:</label><br><br>
+        <textarea id="message" rows="6" cols="60" [(ngModel)]="message.text" name="text"></textarea><br><br>
+        <input type="button" id="inputName" (click)="sendMessage()" value="Invia"><br><br>
+        <p>Clicca "Invia" per inviare il messaggio:</p>
     </form>
+
     <table>
         <colgroup>
             <col style="width: 30%;">
-            <col style="width: 70%;">
+            <col style="width: 40%;">
+            <col style="width: 30%;">
         </colgroup>
 
         <thead>
             <tr>
-                <th>Name and surname</th>
-                <th>Message</th>
+                <th>Nome e cognome</th>
+                <th>Messaggio</th>
+                <th>Creato</th>
             </tr>
         </thead>
 
         <tbody>
-            <tr>
-                <td>January</td>
-                <td>$100</td>
-            </tr>
-            <tr>
-                <td>February</td>
-                <td>$80</td>
+            <tr *ngFor="let message of messages">
+                <td>{{message.name}}</td>
+                <td>{{message.text}}</td>
+                <td>{{message.createdAt | date:'dd-MMM-y, hh:mm'}}</td>
             </tr>
         </tbody>
     </table>

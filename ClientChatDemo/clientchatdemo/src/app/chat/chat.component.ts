@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from './chat.service';
+import { Message } from '../model/message.model';
 
 @Component({
   selector: 'app-chat',
@@ -7,21 +8,21 @@ import { ChatService } from './chat.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  public identity: string;
-  public text: string;
-  public message;
+  public messages: Message[];
+  public message = new Message();
   constructor(
-    public chatService: ChatService,
+    public chatService: ChatService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.chatService.receiveMessage().then(x => this.messages = x as Message[]);
   }
 
-  sendMessage() {
-    this.message = {name: this.identity, text: this.text};
-    console.log(this.message)
-    this.chatService.receiveMessage();
-    this.chatService.sendMessage(this.message);
+   async sendMessage() {
+    delete this.message.id;
+    delete this.message.createdAt;
+    await this.chatService.sendMessage(this.message);
+    await this.chatService.receiveMessage().then(x => this.messages = x as Message[]);
   }
 
 }
