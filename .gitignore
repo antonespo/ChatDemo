@@ -306,3 +306,9 @@ __pycache__/
 
 /.vs
 **/log.txt
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
