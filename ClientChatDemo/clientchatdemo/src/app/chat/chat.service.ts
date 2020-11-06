@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,11 @@ import { HttpClient } from '@angular/common/http';
 export class ChatService {
   sendUrl: string;
   receiveUrl: string;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+    }),
+  };
   constructor(
     private http: HttpClient,
     ) {
@@ -17,10 +22,10 @@ export class ChatService {
 
   // Http send Message
   public async sendMessage(message) {
-    return await this.http.post(this.sendUrl, message);
+    return await this.http.post(this.sendUrl, message,this.httpOptions).toPromise();
   }
   // Http receive Message
-  public async receiveMessage() {
-    return await this.http.get(this.receiveUrl).toPromise();
+  public  receiveMessage() {
+    return  this.http.get(this.receiveUrl).toPromise();
   }
 }
