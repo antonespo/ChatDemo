@@ -22,7 +22,7 @@ export class ChatService {
 
   // Http send Message
   public async sendMessage(message) {
-    return await this.http.post(this.sendUrl, message,this.httpOptions).toPromise();
+    return await this.http.post(this.sendUrl, message, this.httpOptions).toPromise();
   }
   // Http receive Message
   public  receiveMessage() {
