@@ -16,6 +16,7 @@ label {
 th,
 td {
     border: 1px solid gray;
+    word-break: break-all;
 }
 
 table {

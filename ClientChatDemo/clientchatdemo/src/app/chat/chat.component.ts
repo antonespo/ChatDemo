@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit {
     delete this.message.createdAt;
     await this.chatService.sendMessage(this.message);
     await this.chatService.receiveMessage().then(x => this.messages = x as Message[]);
+    this.message.text = '';
   }
 
 }
