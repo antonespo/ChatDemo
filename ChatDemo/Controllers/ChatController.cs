@@ -19,14 +19,14 @@ namespace ChatDemo.Controllers {
 
         [HttpGet ("all")]
         public List<Message> Get () {
-            return context.Messages.ToList(); 
+            return context.Messages.ToList ();
         }
 
         [HttpPost ("new")]
         public bool Post (Message message) {
-            message.CreatedAt = DateTime.Now; 
-            context.Messages.Add(message); 
-            var success = context.SaveChanges() > 0; 
+            message.CreatedAt = DateTime.Now;
+            context.Messages.Add (message);
+            var success = context.SaveChanges () > 0;
 
             return success;
         }
