@@ -17,7 +17,7 @@ export class ChatService {
 
   // Http send Message
   public async sendMessage(message) {
-    return await this.http.post(this.sendUrl, message).toPromise();
+    return await this.http.post(this.sendUrl, message);
   }
   // Http receive Message
   public async receiveMessage() {

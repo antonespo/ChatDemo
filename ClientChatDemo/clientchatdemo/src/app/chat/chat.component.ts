@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from './chat.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-chat',
@@ -11,7 +12,7 @@ export class ChatComponent implements OnInit {
   public text: string;
   public message;
   constructor(
-    public chatService: ChatService,
+    public chatService: ChatService,private http: HttpClient,
   ) { }
 
   ngOnInit() {
@@ -19,8 +20,8 @@ export class ChatComponent implements OnInit {
 
   sendMessage() {
     this.message = {name: this.identity, text: this.text};
-    console.log(this.message)
-    this.chatService.receiveMessage();
+    // console.log(this.message)
+    console.log(this.chatService.receiveMessage());
     this.chatService.sendMessage(this.message);
   }
 
