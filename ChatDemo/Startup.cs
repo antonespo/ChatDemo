@@ -32,6 +32,9 @@ namespace ChatDemo {
                 });
             });
 
+            services
+                .AddControllers(); 
+
             services.AddTransient<DataContext> ();
 
             services.AddDbContext<DataContext> (opt => {
@@ -49,7 +52,9 @@ namespace ChatDemo {
 
             app.UseCors ("CorsPolicy");
 
-            app.UseAuthorization ();
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
 
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllers ();
