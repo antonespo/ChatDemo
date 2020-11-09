@@ -25,12 +25,16 @@ namespace ChatDemo {
                 });
             });
 
-            services.AddControllers(); 
+            services.AddControllers ();
 
             services.AddTransient<DataContext> ();
 
             services.AddDbContext<DataContext> (opt => {
                 opt.UseSqlite (Configuration.GetConnectionString ("DefaultConnection"));
+            });
+
+            services.Configure<IISOptions> (options => {
+                options.AutomaticAuthentication = false;
             });
         }
 
@@ -41,14 +45,19 @@ namespace ChatDemo {
                 app.UseDeveloperExceptionPage ();
             }
 
+            app.UseDefaultFiles ();
+            app.UseStaticFiles ();
+
             app.UseRouting ();
 
             app.UseCors ("CorsPolicy");
 
-            app.UseAuthorization();
+            app.UseAuthorization ();
 
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllers ();
+
+                endpoints.MapFallbackToController ("Index", "Fallback");
             });
         }
     }
