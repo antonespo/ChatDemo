@@ -1,0 +1,3 @@
+La guida completa per l'app lato server al link: 
+
+https://codewithespo.com/how-to-create-web-api-project-with-asp-net-core-and-sqlite/
