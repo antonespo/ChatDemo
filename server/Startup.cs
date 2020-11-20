@@ -33,9 +33,9 @@ namespace ChatDemo {
                 opt.UseSqlite (Configuration.GetConnectionString ("DefaultConnection"));
             });
 
-            services.Configure<IISOptions> (options => {
-                options.AutomaticAuthentication = false;
-            });
+            // services.Configure<IISOptions> (options => {
+            //     options.AutomaticAuthentication = false;
+            // });
         }
 
         // This method gets called by the runtime. 
