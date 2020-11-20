@@ -312,4 +312,4 @@ _ReSharper.*
 bin
 obj
 packages
-*.db
+
